@@ -1,0 +1,29 @@
+{
+  "name": "platformer",
+  "version": "1.0.0",
+  "description": "Little platformer from scratch with Javascript",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve ./public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ventinc/Platformer.git"
+  },
+  "keywords": [
+    "Platformer",
+    "Javascript",
+    "HTML5",
+    "canvas"
+  ],
+  "author": "Vincent DUSAUTOIR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ventinc/Platformer/issues"
+  },
+  "homepage": "https://github.com/Ventinc/Platformer#readme",
+  "dependencies": {
+    "serve": "^6.5.3"
+  }
+}
