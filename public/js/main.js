@@ -1,5 +1,5 @@
 import Timer from './Timer.js';
-import Compositor from './Compositor.js';
+import {createCollisionLayer} from './layers.js';
 import {loadLevel} from './loaders.js';
 import {createMario} from './entities.js';
 
@@ -19,7 +19,7 @@ Promise.all([
 
     const gravity = 2000;
     mario.pos.set(64, 180);
-
+    
     level.entities.add(mario);
     
     const SPACE = 32;
@@ -34,9 +34,16 @@ Promise.all([
     })
     input.listenTo(window);
 
+    ['mousedown', 'mousemove'].forEach(eventName => {
+        canvas.addEventListener(eventName, event => {
+            if (event.buttons === 1) {
+                mario.vel.set(0, 0);
+                mario.pos.set(event.offsetX, event.offsetY);
+            }
+        })
+    });
 
     const timer = new Timer();
-
     timer.update = function update(time) {
         level.update(time);
         level.comp.draw(context);
