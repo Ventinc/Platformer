@@ -1,6 +1,6 @@
 import Level from './Level.js'
 import {loadBackgroundSprites} from './assets.js';
-import {createBackgroundLayer, createSpriteLayer} from './layers.js';
+import {createBackgroundLayer, createSpriteLayer, createCollisionLayer} from './layers.js';
 
 function createTiles(level, backgrounds) {
     backgrounds.forEach(background => {
@@ -34,14 +34,15 @@ export function loadLevel(name) {
         const level = new Level();
 
         createTiles(level, levelSpec.backgrounds);
-        console.table(level.tiles.grid);
-
 
         const backgroundLayer = createBackgroundLayer(level, backgroundSprites);
         level.comp.layers.push(backgroundLayer);
         
         const spriteLayer = createSpriteLayer(level.entities);
         level.comp.layers.push(spriteLayer);
+
+        const collisionLayer = createCollisionLayer(level);
+        level.comp.layers.push(collisionLayer);
            
         return level;
     });
