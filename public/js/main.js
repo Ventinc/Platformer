@@ -25,12 +25,17 @@ Promise.all([
     const SPACE = 32;
     const input = new Keyboard();
     input.addMapping(SPACE, keyState => {
-        console.log(keyState);
         if (keyState) {
             mario.jump.start();
         } else {
             mario.jump.cancel();
         }
+    });
+    input.addMapping(39, keyState => {
+        mario.go.direction = keyState
+    })
+    input.addMapping(37, keyState => {
+        mario.go.direction = -keyState
     })
     input.listenTo(window);
 
