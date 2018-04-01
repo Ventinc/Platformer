@@ -30,10 +30,10 @@ export default class TileResolver {
         if (tile) {
             return {
                 tile,
+                x1,
+                x2,
                 y1,
                 y2,
-                x1,
-                x2
             };
         }
     }
