@@ -1,0 +1,11 @@
+body {
+    background: rgba(0, 0, 0, 1);
+    margin: 0;
+}
+
+.game {
+    display: block;
+    image-rendering: pixelated;
+    margin: auto;
+    height: 100vh;
+}
