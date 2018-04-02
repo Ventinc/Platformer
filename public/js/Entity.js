@@ -10,6 +10,16 @@ export const Sides = {
 export class Trait {
     constructor(name) {
         this.NAME = name;
+        this.tasks = new Array();
+    }
+
+    finalize() {
+        this.tasks.forEach(task => task());
+        this.tasks.length = 0;
+    }
+
+    queue(task) {
+        this.tasks.push(task);
     }
 
     update() {
@@ -24,7 +34,6 @@ export class Trait {
 
 export default class Entity {
     constructor() {
-        this.canCollide = true;
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
         this.size = new Vec2(0, 0);
@@ -32,7 +41,7 @@ export default class Entity {
         this.bounds = new BoundingBox(this.pos, this.size, this.offset);
         this.lifetime = 0;
 
-        this.traits = [];
+        this.traits = new Array();
     }
 
     addTrait(trait) {
@@ -46,9 +55,15 @@ export default class Entity {
         })   
     }
 
-    obstruct(side) {
+    finalize() {
         this.traits.forEach(trait => {
-            trait.obstruct(this, side);
+            trait.finalize();
+        })
+    }
+
+    obstruct(...args) {
+        this.traits.forEach(trait => {
+            trait.obstruct(this, ...args);
         })   
     }
 
